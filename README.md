@@ -18,8 +18,8 @@
 
 ## Q2: How do you create and insert a new element into the DOM?
 
-To create and insert a new element into the DOM, you need to:\
-1. Create the element using `document.createElement()`.\
+To create and insert a new element into the DOM, you need to:
+1. Create the element using `document.createElement()`.
 2. Add any desired content (like text or other elements) to the new
 element.\
 3. Insert the new element into the DOM with `appendChild`,
@@ -42,12 +42,12 @@ listener on the parent element. That parent checks which child was
 clicked and handles it.
 
 **Why useful?**
-- Saves memory (fewer listeners).\
+- Saves memory (fewer listeners).
 - Works great for dynamic content (when new children are added).
 
 ## Q5: What is the difference between preventDefault() and stopPropagation() methods?
 
--   **preventDefault()** → Stops the browser's default action.\
+-   **preventDefault()** → Stops the browser's default action.
     *Example:* Prevent a form from submitting or a link from going to
     another page.
 
