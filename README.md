@@ -41,7 +41,7 @@ Instead of putting event listeners on every small element, you put one
 listener on the parent element. That parent checks which child was
 clicked and handles it.
 
-**Why useful?**\
+**Why useful?**
 - Saves memory (fewer listeners).\
 - Works great for dynamic content (when new children are added).
 
