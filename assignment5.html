@@ -266,3 +266,89 @@
                 cardsContainer.innerHTML += cardHTML;
             });
         }
+
+        function addEventListeners() {
+            document.querySelectorAll('.heart-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    heartCount++;
+                    heartCountEl.textContent = heartCount;
+                    this.classList.add('text-red-500');
+                    this.classList.remove('text-gray-400');
+                });
+            });
+
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const number = this.getAttribute('data-number');
+                    navigator.clipboard.writeText(number).then(() => {
+                        alert(`Number ${number} copied`);
+                        copyCount++;
+                        copyCountEl.textContent = copyCount;
+                    }).catch(err => {
+                        const textArea = document.createElement('textarea');
+                        textArea.value = number;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        alert(`Number ${number} copied`);
+                        copyCount++;
+                        copyCountEl.textContent = copyCount;
+                    });
+                });
+            });
+
+            document.querySelectorAll('.call-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const serviceName = this.getAttribute('data-name');
+                    const serviceNumber = this.getAttribute('data-number');
+                    if (coinCount < 20) {
+                        alert('Not enough coins! You need at least 20 coins to make a call.');
+                        return;
+                    }
+                    coinCount -= 20;
+                    coinCountEl.textContent = coinCount;
+                    alert(`Calling ${serviceName} at ${serviceNumber}`);
+                    const currentTime = new Date().toLocaleTimeString();
+                    callHistory.unshift({ name: serviceName, number: serviceNumber, time: currentTime });
+                    updateHistoryDisplay();
+                });
+            });
+        }
+
+        function updateHistoryDisplay() {
+            historyList.innerHTML = '';
+           
+            callHistory.forEach(call => {
+                const historyItem = `
+                    <div class="bg-[#fafafa] rounded-lg p-2 sm:p-4 lg:p-4 mb-2 sm:mb-3">
+                        <div class="flex justify-between items-center">
+                            <div class="flex-1">
+                                <h4 class="hind-madurai-semibold text-gray-800 text-xs sm:text-sm mb-1">${call.name}</h4>
+                                <p class="text-gray-600 text-xs sm:text-sm hind-madurai-regular">${call.number}</p>
+                            </div>
+                            <div class="text-right ml-2 sm:ml-4 flex items-center">
+                                <p class="text-black-500 text-xs hind-madurai-regular">${call.time}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                historyList.innerHTML += historyItem;
+            });
+        }
+
+        clearHistoryBtn.addEventListener('click', function() {
+            callHistory = [];
+            updateHistoryDisplay();
+        });
+
+        function init() {
+            generateCards();
+            addEventListeners();
+            updateHistoryDisplay();
+        }
+
+        init();
+    </script>
+</body>
+</html>
