@@ -21,7 +21,7 @@
 To create and insert a new element into the DOM, you need to:
 1. Create the element using `document.createElement()`.
 2. Add any desired content (like text or other elements) to the new
-element.\
+element.
 3. Insert the new element into the DOM with `appendChild`,
 `insertBefore`, or other DOM manipulation methods.
 
@@ -58,7 +58,7 @@ document.querySelector("form").addEventListener("submit", function(e) {
 ```
 
 -   **stopPropagation()** → Stops the event from bubbling up to
-    parents.\
+    parents.
     *Example:* A button click won't trigger the parent `<div>`'s click
     listener.
 
